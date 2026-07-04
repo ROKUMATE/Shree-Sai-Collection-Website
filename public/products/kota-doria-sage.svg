@@ -1,0 +1,275 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800"><defs>
+      <linearGradient id="g" x1="0" y1="0" x2="0.35" y2="1">
+        <stop offset="0" stop-color="#5e7d5a"/>
+        <stop offset="1" stop-color="#42593f"/>
+      </linearGradient>
+      <radialGradient id="vig" cx="0.5" cy="0.42" r="0.95">
+        <stop offset="0.6" stop-color="rgba(0,0,0,0)"/>
+        <stop offset="1" stop-color="rgba(0,0,0,0.18)"/>
+      </radialGradient>
+      
+  <pattern id="weave" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="8" height="8" fill="none"/>
+    <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+  </pattern>
+    </defs>
+    <rect width="600" height="800" fill="url(#g)"/>
+    <rect width="600" height="800" fill="url(#weave)"/>
+    
+  <g transform="translate(60 55) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(156 55) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(252 55) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(348 55) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(444 55) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(540 55) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(108 117) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(204 117) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(300 117) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(396 117) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(492 117) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(588 117) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(60 179) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(156 179) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(252 179) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(348 179) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(444 179) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(540 179) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(108 241) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(204 241) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(300 241) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(396 241) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(492 241) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(588 241) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(60 303) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(156 303) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(252 303) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(348 303) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(444 303) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(540 303) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(108 365) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(204 365) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(300 365) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(396 365) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(492 365) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(588 365) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(60 427) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(156 427) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(252 427) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(348 427) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(444 427) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(540 427) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(108 489) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(204 489) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(300 489) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(396 489) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(492 489) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(588 489) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(60 551) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(156 551) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(252 551) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(348 551) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(444 551) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  <g transform="translate(540 551) scale(1.15)" fill="#d9b95c">
+    <path d="M0 -6 L4 0 L0 6 L-4 0 Z"/>
+    <circle cx="0" cy="0" r="1.2" fill="rgba(255,255,255,0.7)"/>
+  </g>
+    <rect y="600" width="600" height="200" fill="#42593f"/>
+    <rect y="600" width="600" height="200" fill="url(#weave)"/>
+    <rect y="604" width="600" height="2.5" fill="#c9a227"/>
+    <rect y="612" width="600" height="1.2" fill="#d9b95c" opacity="0.8"/>
+    <rect y="622" width="600" height="5" fill="#8c5b2f"/>
+    <rect y="634" width="600" height="1.2" fill="#d9b95c" opacity="0.6"/>
+    
+  <g transform="translate(70 700) rotate(18) scale(1.5)">
+    <path d="M0 -20 C13 -15 16 3 9 13 C4 21 -5 21 -9 12 C-14 1 -12 -14 0 -20 Z" fill="#c9a227"/>
+    <path d="M0 -13 C8 -9 10 1 5 8 C2 13 -3 13 -6 7 C-9 0 -8 -9 0 -13 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4"/>
+    <circle cx="0" cy="-1" r="1.6" fill="rgba(255,255,255,0.8)"/>
+  </g>
+  <g transform="translate(164 700) rotate(18) scale(1.5)">
+    <path d="M0 -20 C13 -15 16 3 9 13 C4 21 -5 21 -9 12 C-14 1 -12 -14 0 -20 Z" fill="#c9a227"/>
+    <path d="M0 -13 C8 -9 10 1 5 8 C2 13 -3 13 -6 7 C-9 0 -8 -9 0 -13 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4"/>
+    <circle cx="0" cy="-1" r="1.6" fill="rgba(255,255,255,0.8)"/>
+  </g>
+  <g transform="translate(258 700) rotate(18) scale(1.5)">
+    <path d="M0 -20 C13 -15 16 3 9 13 C4 21 -5 21 -9 12 C-14 1 -12 -14 0 -20 Z" fill="#c9a227"/>
+    <path d="M0 -13 C8 -9 10 1 5 8 C2 13 -3 13 -6 7 C-9 0 -8 -9 0 -13 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4"/>
+    <circle cx="0" cy="-1" r="1.6" fill="rgba(255,255,255,0.8)"/>
+  </g>
+  <g transform="translate(352 700) rotate(18) scale(1.5)">
+    <path d="M0 -20 C13 -15 16 3 9 13 C4 21 -5 21 -9 12 C-14 1 -12 -14 0 -20 Z" fill="#c9a227"/>
+    <path d="M0 -13 C8 -9 10 1 5 8 C2 13 -3 13 -6 7 C-9 0 -8 -9 0 -13 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4"/>
+    <circle cx="0" cy="-1" r="1.6" fill="rgba(255,255,255,0.8)"/>
+  </g>
+  <g transform="translate(446 700) rotate(18) scale(1.5)">
+    <path d="M0 -20 C13 -15 16 3 9 13 C4 21 -5 21 -9 12 C-14 1 -12 -14 0 -20 Z" fill="#c9a227"/>
+    <path d="M0 -13 C8 -9 10 1 5 8 C2 13 -3 13 -6 7 C-9 0 -8 -9 0 -13 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4"/>
+    <circle cx="0" cy="-1" r="1.6" fill="rgba(255,255,255,0.8)"/>
+  </g>
+  <g transform="translate(540 700) rotate(18) scale(1.5)">
+    <path d="M0 -20 C13 -15 16 3 9 13 C4 21 -5 21 -9 12 C-14 1 -12 -14 0 -20 Z" fill="#c9a227"/>
+    <path d="M0 -13 C8 -9 10 1 5 8 C2 13 -3 13 -6 7 C-9 0 -8 -9 0 -13 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4"/>
+    <circle cx="0" cy="-1" r="1.6" fill="rgba(255,255,255,0.8)"/>
+  </g>
+    <polyline points="0,754 24,764 48,754 72,764 96,754 120,764 144,754 168,764 192,754 216,764 240,754 264,764 288,754 312,764 336,754 360,764 384,754 408,764 432,754 456,764 480,754 504,764 528,754 552,764 576,754 600,764" fill="none" stroke="#c9a227" stroke-width="2"/>
+    <rect y="788" width="600" height="12" fill="#c9a227" opacity="0.9"/>
+    <rect width="600" height="800" fill="url(#vig)"/>
+    </svg>

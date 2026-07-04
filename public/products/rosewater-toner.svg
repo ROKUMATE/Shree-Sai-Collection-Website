@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800"><defs>
+      <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="rgba(255,255,255,0.25)"/>
+        <stop offset="0.35" stop-color="rgba(255,255,255,0)"/>
+        <stop offset="1" stop-color="rgba(0,0,0,0.08)"/>
+      </linearGradient>
+    </defs>
+    <rect width="600" height="800" fill="#e9dfe4"/>
+    <circle cx="300" cy="400" r="235" fill="rgba(255,255,255,0.35)"/>
+    <ellipse cx="300" cy="652" rx="150" ry="18" fill="rgba(0,0,0,0.10)"/>
+    
+      <g transform="translate(300 300)">
+        <rect x="-70" y="0" width="140" height="300" rx="14" fill="#d8a7b8"/>
+        <rect x="-70" y="0" width="140" height="300" rx="14" fill="url(#sheen)"/>
+        <rect x="-26" y="-64" width="52" height="70" rx="6" fill="#4a3540"/>
+        <rect x="-8" y="-116" width="16" height="56" rx="6" fill="#4a3540"/>
+        <circle cx="0" cy="-116" r="14" fill="#4a3540"/>
+        <rect x="-46" y="86" width="92" height="110" rx="4" fill="rgba(255,255,255,0.85)"/>
+        <rect x="-30" y="112" width="60" height="3" fill="#a55c78"/>
+        <rect x="-22" y="126" width="44" height="2.4" fill="rgba(0,0,0,0.25)"/>
+        <rect x="-26" y="138" width="52" height="2.4" fill="rgba(0,0,0,0.15)"/>
+      </g>
+    <rect x="24" y="24" width="552" height="752" fill="none" stroke="rgba(0,0,0,0.10)" stroke-width="1.2"/>
+    </svg>

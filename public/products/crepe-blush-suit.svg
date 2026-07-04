@@ -1,0 +1,358 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800"><defs>
+      <radialGradient id="vig" cx="0.5" cy="0.45" r="0.95">
+        <stop offset="0.6" stop-color="rgba(0,0,0,0)"/>
+        <stop offset="1" stop-color="rgba(0,0,0,0.16)"/>
+      </radialGradient>
+      
+  <pattern id="weave" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="8" height="8" fill="none"/>
+    <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+  </pattern>
+    </defs>
+    <rect width="600" height="800" fill="#c48d94"/>
+    <rect width="600" height="800" fill="url(#weave)"/>
+    
+      <rect y="130" width="600" height="118" fill="#c48d94"/>
+      <rect y="130" width="600" height="118" fill="url(#weave)"/>
+      <rect y="238" width="600" height="10" fill="rgba(0,0,0,0.16)"/>
+      <rect y="144" width="600" height="2" fill="#d9b95c" opacity="0.55"/>
+    
+      <rect y="248" width="600" height="118" fill="#a06e75"/>
+      <rect y="248" width="600" height="118" fill="url(#weave)"/>
+      <rect y="356" width="600" height="10" fill="rgba(0,0,0,0.16)"/>
+      <rect y="262" width="600" height="2" fill="#d9b95c" opacity="0.55"/>
+    
+      <rect y="366" width="600" height="118" fill="#c48d94"/>
+      <rect y="366" width="600" height="118" fill="url(#weave)"/>
+      <rect y="474" width="600" height="10" fill="rgba(0,0,0,0.16)"/>
+      <rect y="380" width="600" height="2" fill="#d9b95c" opacity="0.55"/>
+    
+      <rect y="484" width="600" height="118" fill="#a06e75"/>
+      <rect y="484" width="600" height="118" fill="url(#weave)"/>
+      <rect y="592" width="600" height="10" fill="rgba(0,0,0,0.16)"/>
+      <rect y="498" width="600" height="2" fill="#d9b95c" opacity="0.55"/>
+    
+      <rect y="602" width="600" height="118" fill="#c48d94"/>
+      <rect y="602" width="600" height="118" fill="url(#weave)"/>
+      <rect y="710" width="600" height="10" fill="rgba(0,0,0,0.16)"/>
+      <rect y="616" width="600" height="2" fill="#d9b95c" opacity="0.55"/>
+    
+    
+        <g transform="translate(45 165)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(130 165)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(215 165)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(300 165)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(385 165)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(470 165)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(555 165)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(87 223)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(172 223)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(257 223)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(342 223)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(427 223)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(512 223)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(597 223)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(45 281)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(130 281)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(215 281)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(300 281)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(385 281)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(470 281)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(555 281)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(87 339)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(172 339)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(257 339)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(342 339)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(427 339)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(512 339)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(597 339)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(45 397)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(130 397)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(215 397)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(300 397)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(385 397)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(470 397)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(555 397)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(87 455)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(172 455)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(257 455)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(342 455)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(427 455)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(512 455)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(597 455)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(45 513)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(130 513)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(215 513)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(300 513)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(385 513)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(470 513)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(555 513)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(87 571)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(172 571)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(257 571)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(342 571)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(427 571)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(512 571)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(597 571)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(45 629)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(130 629)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(215 629)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(300 629)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(385 629)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(470 629)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(555 629)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(87 687)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(172 687)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(257 687)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(342 687)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(427 687)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(512 687)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+        <g transform="translate(597 687)" opacity="0.5">
+          <circle r="7" fill="none" stroke="#f4dde0" stroke-width="1.5"/>
+          <circle r="2" fill="#f4dde0"/>
+        </g>
+    <path d="M0 0 L600 0 L600 96 Q 300 148 0 96 Z" fill="#4a3752"/>
+    <path d="M0 84 Q 300 136 600 84" fill="none" stroke="#c9a227" stroke-width="3"/>
+    <path d="M0 92 Q 300 144 600 92" fill="none" stroke="#d9b95c" stroke-width="1.4" opacity="0.8"/>
+    <rect y="726" width="600" height="74" fill="#4a3752"/>
+    <rect y="730" width="600" height="2.4" fill="#c9a227"/>
+    
+  <g transform="translate(72 766) rotate(15) scale(1.05)">
+    <path d="M0 -20 C13 -15 16 3 9 13 C4 21 -5 21 -9 12 C-14 1 -12 -14 0 -20 Z" fill="#c9a227"/>
+    <path d="M0 -13 C8 -9 10 1 5 8 C2 13 -3 13 -6 7 C-9 0 -8 -9 0 -13 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4"/>
+    <circle cx="0" cy="-1" r="1.6" fill="rgba(255,255,255,0.8)"/>
+  </g>
+  <g transform="translate(164 766) rotate(15) scale(1.05)">
+    <path d="M0 -20 C13 -15 16 3 9 13 C4 21 -5 21 -9 12 C-14 1 -12 -14 0 -20 Z" fill="#c9a227"/>
+    <path d="M0 -13 C8 -9 10 1 5 8 C2 13 -3 13 -6 7 C-9 0 -8 -9 0 -13 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4"/>
+    <circle cx="0" cy="-1" r="1.6" fill="rgba(255,255,255,0.8)"/>
+  </g>
+  <g transform="translate(256 766) rotate(15) scale(1.05)">
+    <path d="M0 -20 C13 -15 16 3 9 13 C4 21 -5 21 -9 12 C-14 1 -12 -14 0 -20 Z" fill="#c9a227"/>
+    <path d="M0 -13 C8 -9 10 1 5 8 C2 13 -3 13 -6 7 C-9 0 -8 -9 0 -13 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4"/>
+    <circle cx="0" cy="-1" r="1.6" fill="rgba(255,255,255,0.8)"/>
+  </g>
+  <g transform="translate(348 766) rotate(15) scale(1.05)">
+    <path d="M0 -20 C13 -15 16 3 9 13 C4 21 -5 21 -9 12 C-14 1 -12 -14 0 -20 Z" fill="#c9a227"/>
+    <path d="M0 -13 C8 -9 10 1 5 8 C2 13 -3 13 -6 7 C-9 0 -8 -9 0 -13 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4"/>
+    <circle cx="0" cy="-1" r="1.6" fill="rgba(255,255,255,0.8)"/>
+  </g>
+  <g transform="translate(440 766) rotate(15) scale(1.05)">
+    <path d="M0 -20 C13 -15 16 3 9 13 C4 21 -5 21 -9 12 C-14 1 -12 -14 0 -20 Z" fill="#c9a227"/>
+    <path d="M0 -13 C8 -9 10 1 5 8 C2 13 -3 13 -6 7 C-9 0 -8 -9 0 -13 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4"/>
+    <circle cx="0" cy="-1" r="1.6" fill="rgba(255,255,255,0.8)"/>
+  </g>
+  <g transform="translate(532 766) rotate(15) scale(1.05)">
+    <path d="M0 -20 C13 -15 16 3 9 13 C4 21 -5 21 -9 12 C-14 1 -12 -14 0 -20 Z" fill="#c9a227"/>
+    <path d="M0 -13 C8 -9 10 1 5 8 C2 13 -3 13 -6 7 C-9 0 -8 -9 0 -13 Z" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.4"/>
+    <circle cx="0" cy="-1" r="1.6" fill="rgba(255,255,255,0.8)"/>
+  </g>
+    <rect width="600" height="800" fill="url(#vig)"/>
+    </svg>

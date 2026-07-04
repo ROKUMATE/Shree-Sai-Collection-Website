@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800"><defs>
+      <radialGradient id="velvet" cx="0.5" cy="0.4" r="1">
+        <stop offset="0" stop-color="#42210f"/>
+        <stop offset="1" stop-color="#2a1509"/>
+      </radialGradient>
+      <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#e8c96a"/>
+        <stop offset="0.5" stop-color="#c9a227"/>
+        <stop offset="1" stop-color="#a07f1a"/>
+      </linearGradient>
+      
+  <pattern id="weave" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="8" height="8" fill="none"/>
+    <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+  </pattern>
+    </defs>
+    <rect width="600" height="800" fill="url(#velvet)"/>
+    <rect width="600" height="800" fill="url(#weave)"/>
+    
+        <ellipse cx="300" cy="250" rx="185" ry="60" fill="none" stroke="url(#gold)" stroke-width="16"/>
+        <ellipse cx="300" cy="250" rx="185" ry="60" fill="none" stroke="#8a6a14" stroke-width="1.2" opacity="0.7"/>
+        <circle cx="485.0" cy="250.0" r="3.4" fill="#9b1c31"/><circle cx="441.7" cy="288.6" r="3.4" fill="#9b1c31"/><circle cx="332.1" cy="309.1" r="3.4" fill="#9b1c31"/><circle cx="207.5" cy="302.0" r="3.4" fill="#9b1c31"/><circle cx="126.2" cy="270.5" r="3.4" fill="#9b1c31"/><circle cx="126.2" cy="229.5" r="3.4" fill="#9b1c31"/><circle cx="207.5" cy="198.0" r="3.4" fill="#9b1c31"/><circle cx="332.1" cy="190.9" r="3.4" fill="#9b1c31"/><circle cx="441.7" cy="211.4" r="3.4" fill="#9b1c31"/>
+        <ellipse cx="300" cy="380" rx="185" ry="60" fill="none" stroke="url(#gold)" stroke-width="16"/>
+        <ellipse cx="300" cy="380" rx="185" ry="60" fill="none" stroke="#8a6a14" stroke-width="1.2" opacity="0.7"/>
+        <circle cx="485.0" cy="380.0" r="3.4" fill="#9b1c31"/><circle cx="441.7" cy="418.6" r="3.4" fill="#9b1c31"/><circle cx="332.1" cy="439.1" r="3.4" fill="#9b1c31"/><circle cx="207.5" cy="432.0" r="3.4" fill="#9b1c31"/><circle cx="126.2" cy="400.5" r="3.4" fill="#9b1c31"/><circle cx="126.2" cy="359.5" r="3.4" fill="#9b1c31"/><circle cx="207.5" cy="328.0" r="3.4" fill="#9b1c31"/><circle cx="332.1" cy="320.9" r="3.4" fill="#9b1c31"/><circle cx="441.7" cy="341.4" r="3.4" fill="#9b1c31"/>
+        <ellipse cx="300" cy="510" rx="185" ry="60" fill="none" stroke="url(#gold)" stroke-width="16"/>
+        <ellipse cx="300" cy="510" rx="185" ry="60" fill="none" stroke="#8a6a14" stroke-width="1.2" opacity="0.7"/>
+        <circle cx="485.0" cy="510.0" r="3.4" fill="#9b1c31"/><circle cx="441.7" cy="548.6" r="3.4" fill="#9b1c31"/><circle cx="332.1" cy="569.1" r="3.4" fill="#9b1c31"/><circle cx="207.5" cy="562.0" r="3.4" fill="#9b1c31"/><circle cx="126.2" cy="530.5" r="3.4" fill="#9b1c31"/><circle cx="126.2" cy="489.5" r="3.4" fill="#9b1c31"/><circle cx="207.5" cy="458.0" r="3.4" fill="#9b1c31"/><circle cx="332.1" cy="450.9" r="3.4" fill="#9b1c31"/><circle cx="441.7" cy="471.4" r="3.4" fill="#9b1c31"/>
+    
+    <g transform="translate(92 132) scale(1)" fill="rgba(255,244,214,0.85)">
+      <path d="M0 -8 L1.6 -1.6 L8 0 L1.6 1.6 L0 8 L-1.6 1.6 L-8 0 L-1.6 -1.6 Z"/>
+    </g> 
+    <g transform="translate(508 180) scale(0.7)" fill="rgba(255,244,214,0.85)">
+      <path d="M0 -8 L1.6 -1.6 L8 0 L1.6 1.6 L0 8 L-1.6 1.6 L-8 0 L-1.6 -1.6 Z"/>
+    </g> 
+    <g transform="translate(120 620) scale(0.8)" fill="rgba(255,244,214,0.85)">
+      <path d="M0 -8 L1.6 -1.6 L8 0 L1.6 1.6 L0 8 L-1.6 1.6 L-8 0 L-1.6 -1.6 Z"/>
+    </g> 
+    <g transform="translate(500 660) scale(1.1)" fill="rgba(255,244,214,0.85)">
+      <path d="M0 -8 L1.6 -1.6 L8 0 L1.6 1.6 L0 8 L-1.6 1.6 L-8 0 L-1.6 -1.6 Z"/>
+    </g>
+    <rect x="24" y="24" width="552" height="752" fill="none" stroke="#c9a227" stroke-width="1.2" opacity="0.5"/>
+    </svg>
