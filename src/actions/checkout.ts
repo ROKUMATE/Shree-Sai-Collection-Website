@@ -10,6 +10,7 @@ import {
   razorpayConfigured,
   verifyRazorpaySignature,
 } from "@/lib/razorpay";
+import { sendOrderPlacedEmail } from "@/lib/mail";
 
 // ---------- addresses ----------
 
@@ -139,6 +140,17 @@ export async function placeOrder(
 
   revalidatePath("/", "layout");
 
+  // confirmation email — a logged no-op when SMTP is not configured
+  const [user, placed] = await Promise.all([
+    db.user.findUnique({ where: { id: session.userId } }),
+    db.order.findUnique({ where: { id: order.id }, include: { items: true } }),
+  ]);
+  if (user && placed) {
+    sendOrderPlacedEmail(user.email, placed).catch((e) =>
+      console.error("order email:", e)
+    );
+  }
+
   if (method === "COD") {
     return { ok: true, orderId: order.id, payment: null };
   }
@@ -150,7 +162,6 @@ export async function placeOrder(
       where: { id: order.id },
       data: { razorpayOrderId: rzp.id },
     });
-    const user = await db.user.findUnique({ where: { id: session.userId } });
     return {
       ok: true,
       orderId: order.id,

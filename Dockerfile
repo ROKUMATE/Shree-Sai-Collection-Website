@@ -39,6 +39,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/node_modules/bcryptjs ./node_modu
 # cannot clobber the app's node_modules. Keep version in sync with package.json.
 RUN mkdir /tools && cd /tools && npm install --no-save prisma@6.19.3 \
   && npm cache clean --force && chown -R nextjs:nodejs /tools
+
+# Writable directory for admin-uploaded product photos (mounted as a volume in compose)
+RUN mkdir -p /app/uploads && chown nextjs:nodejs /app/uploads
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 COPY --chown=nextjs:nodejs scripts/bootstrap.mjs ./scripts/bootstrap.mjs
 COPY --chown=nextjs:nodejs docker-entrypoint.sh ./docker-entrypoint.sh

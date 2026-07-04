@@ -6,6 +6,7 @@ import type { OrderStatus } from "@prisma/client";
 import { db } from "@/lib/db";
 import { requireAdmin } from "@/lib/auth";
 import { slugify } from "@/lib/utils";
+import { sendOrderStatusEmail } from "@/lib/mail";
 
 // ---------- products ----------
 
@@ -116,7 +117,10 @@ export async function updateOrderStatus(orderId: string, formData: FormData) {
   const location = String(formData.get("location") ?? "").trim() || null;
   const note = String(formData.get("note") ?? "").trim() || null;
 
-  const order = await db.order.findUnique({ where: { id: orderId }, include: { items: true } });
+  const order = await db.order.findUnique({
+    where: { id: orderId },
+    include: { items: true, user: true },
+  });
   if (!order || order.status === status) return;
 
   await db.$transaction(async (tx) => {
@@ -144,6 +148,11 @@ export async function updateOrderStatus(orderId: string, formData: FormData) {
       },
     });
   });
+
+  // notify the customer — a logged no-op when SMTP is not configured
+  sendOrderStatusEmail(order.user.email, order, status, location, note).catch((e) =>
+    console.error("status email:", e)
+  );
 
   revalidatePath(`/admin/orders/${orderId}`);
   revalidatePath("/admin/orders");

@@ -31,6 +31,28 @@ export function ProductForm({
 }) {
   const [state, formAction, pending] = useActionState(action, undefined);
   const [imageUrl, setImageUrl] = useState(initial?.image ?? "");
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
+  async function onFileSelected(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    setUploadError(null);
+    try {
+      const body = new FormData();
+      body.append("file", file);
+      const res = await fetch("/api/admin/upload", { method: "POST", body });
+      const json = (await res.json()) as { url?: string; error?: string };
+      if (res.ok && json.url) setImageUrl(json.url);
+      else setUploadError(json.error ?? "Upload failed. Please try again.");
+    } catch {
+      setUploadError("Upload failed. Please try again.");
+    } finally {
+      setUploading(false);
+      e.target.value = "";
+    }
+  }
 
   return (
     <form action={formAction} className="grid max-w-4xl gap-8 lg:grid-cols-[1fr_260px]">
@@ -98,18 +120,32 @@ export function ProductForm({
         </div>
 
         <div>
-          <label className="label" htmlFor="image">Image URL</label>
-          <input
-            id="image"
-            name="image"
-            required
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            placeholder="/products/my-image.svg or https://…"
-            className="input"
-          />
+          <label className="label" htmlFor="image">Product image</label>
+          <div className="flex gap-3">
+            <input
+              id="image"
+              name="image"
+              required
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+              placeholder="/products/my-image.svg or https://…"
+              className="input flex-1"
+            />
+            <label className={`btn-outline shrink-0 cursor-pointer ${uploading ? "opacity-50" : ""}`}>
+              {uploading ? "Uploading…" : "Upload photo"}
+              <input
+                type="file"
+                accept=".jpg,.jpeg,.png,.webp,.avif,.svg"
+                onChange={onFileSelected}
+                disabled={uploading}
+                className="sr-only"
+                data-testid="file-input"
+              />
+            </label>
+          </div>
+          {uploadError && <p className="mt-1 text-xs text-burgundy">{uploadError}</p>}
           <p className="mt-1 text-xs text-ink-faint">
-            Paste a full image URL, or use one of the built-in swatches in /products/.
+            Upload a photo (JPG/PNG/WebP, max 5 MB), paste an image URL, or use a built-in swatch from /products/.
           </p>
         </div>
 

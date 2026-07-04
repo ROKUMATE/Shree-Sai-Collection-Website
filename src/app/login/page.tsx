@@ -7,17 +7,29 @@ import { login } from "@/actions/auth";
 
 function LoginForm() {
   const [state, action, pending] = useActionState(login, undefined);
-  const next = useSearchParams().get("next") ?? "/";
+  const searchParams = useSearchParams();
+  const next = searchParams.get("next") ?? "/";
+  const justReset = searchParams.get("reset") === "1";
 
   return (
     <form action={action} className="card space-y-5 p-8">
       <input type="hidden" name="next" value={next} />
+      {justReset && (
+        <p className="border border-green-200 bg-green-50 p-3 text-sm text-green-800">
+          Password updated — sign in with your new password.
+        </p>
+      )}
       <div>
         <label className="label" htmlFor="email">Email</label>
         <input id="email" name="email" type="email" required autoComplete="email" className="input" />
       </div>
       <div>
-        <label className="label" htmlFor="password">Password</label>
+        <div className="flex items-baseline justify-between">
+          <label className="label" htmlFor="password">Password</label>
+          <Link href="/forgot-password" className="text-xs text-burgundy hover:underline">
+            Forgot password?
+          </Link>
+        </div>
         <input id="password" name="password" type="password" required autoComplete="current-password" className="input" />
       </div>
       {state?.error && <p className="text-sm text-burgundy">{state.error}</p>}

@@ -59,6 +59,15 @@ Admin panel: **http://localhost:3000/admin**
 - `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` — from Razorpay dashboard.
   **Test keys are currently set in local `.env`.** If left empty, the site
   automatically falls back to COD-only checkout (still fully functional).
+  ⚠️ The first set of test keys was accidentally pushed to GitHub (2026-07-04, since
+  scrubbed + force-pushed) — **rotate them in the Razorpay dashboard**.
+- `RAZORPAY_WEBHOOK_SECRET` — set the same value in Razorpay → Settings → Webhooks
+  (URL `https://YOUR_DOMAIN/api/webhooks/razorpay`, events `payment.captured` + `payment.failed`).
+- `APP_URL` — public site URL, used for links inside emails.
+- `SMTP_HOST/PORT/SECURE/USER/PASS/FROM` — optional; when unset, all emails become logged
+  no-ops and the store runs fine without them. Password reset requires SMTP to be configured.
+- `UPLOAD_DIR` — where admin-uploaded photos are stored (default `./uploads`; a Docker
+  volume in production).
 - No `NEXT_PUBLIC_*` vars needed — the Razorpay key id reaches the browser via server action results.
 
 ## Deploying to production (VPS on AWS / GCP / DigitalOcean / anywhere)
@@ -99,13 +108,21 @@ src/
     db.ts                   # Prisma singleton
     auth.ts                 # JWT session create/read/destroy, requireSession/requireAdmin
     razorpay.ts             # order create (REST) + HMAC signature verify
+    mail.ts                 # nodemailer wrapper (no-op without SMTP) + email templates
+    rate-limit.ts           # in-memory sliding-window limiter (per-IP)
+    uploads.ts              # upload dir, allowed types, safe-name rules
     utils.ts                # formatINR, order numbers, status flow/labels, shipping rules
   actions/                  # ALL mutations are server actions ("use server")
-    auth.ts                 # register/login/logout/profile/password
+    auth.ts                 # register/login/logout/profile/password + password reset
     cart.ts                 # cart CRUD, wishlist toggle, reviews
     checkout.ts             # addresses, placeOrder (COD+Razorpay), confirm/retry payment, cancel
-    admin.ts                # product/category CRUD, order status+tracking, roles
+    admin.ts                # product/category CRUD, order status+tracking (emails customer), roles
   app/                      # pages (App Router); admin under /admin (guarded in layout too)
+    api/health              # liveness + DB check (Docker healthcheck)
+    api/webhooks/razorpay   # signature-verified payment webhook (captured/failed), idempotent
+    api/admin/upload        # POST multipart image (admin-only, 5MB, jpg/png/webp/avif/svg)
+    api/uploads/[name]      # serves uploaded images (immutable cache, SVG-safe CSP)
+    forgot-password, reset-password/[token]  # email-based password reset (needs SMTP)
   components/               # Navbar, ProductCard, CheckoutForm, OrderTimeline, ProductForm, ...
 ```
 
@@ -131,6 +148,15 @@ customer-facing timeline.
 - Cart requires a signed-in user (no guest carts, by design for simplicity).
 - Free shipping ≥ ₹999, else flat ₹79 — constants in `src/lib/utils.ts`.
 - Login redirects admins to `/admin`, customers to where they came from.
+- **Auth rate limits** (per IP, in-memory — move to Redis only if you ever run replicas):
+  login 8/10min, register 5/hour, forgot-password 3/15min.
+- **Password reset**: single active token per user, sha256-hashed in DB, 1-hour expiry,
+  single-use; responses never reveal whether an email exists.
+- **Emails** (order placed, status updates, password reset) are fire-and-forget and never
+  block or fail a request; without SMTP they just log.
+- **Uploads** are admin-only, extension + size validated, served with `nosniff` and a
+  restrictive CSP (uploaded SVGs can't run scripts). Files live in the `uploads` Docker
+  volume so they survive rebuilds.
 
 ## Design system
 
@@ -157,22 +183,24 @@ Search-and-replace `Shringar` in: `src/app/layout.tsx` (metadata), `src/componen
 `prisma/seed.ts`, compose files (container names), and the `SR-` order-number prefix in
 `src/lib/utils.ts` if desired.
 
-## Verification status (last run: 2026-07-04)
+## Verification status (last run: 2026-07-04, after backend completion)
 
-- `npm run build` — clean, 20 routes.
-- Playwright E2E (script kept in session scratchpad, easily recreated): register → add to cart →
-  buy-now → save address → COD checkout → order timeline → admin login → dashboard → ship order
-  with location/note → create product → customer sees SHIPPED + tracking event → customer blocked
-  from `/admin`. **All 10 steps passed.**
+- `npm run build` — clean, 24 routes.
+- Playwright E2E regression: register → add to cart → buy-now → save address → COD checkout →
+  order timeline → admin login → dashboard → ship order with location/note → create product →
+  customer sees SHIPPED + tracking event → customer blocked from `/admin`. **All 10 steps passed.**
+- Backend feature suite — **all 8 checks passed**: webhook rejects bad signatures / marks orders
+  PAID on `payment.captured`; upload API rejects unauthenticated + path traversal; admin photo
+  upload stores and serves a real file; password-reset link works once and only once; login
+  rate limit kicks in after repeated failures.
 - Razorpay test keys verified against the live API (order created successfully).
 - Docker production image build + boot verified (migrations + bootstrap + healthcheck).
 
 ## Known gaps / sensible next steps
 
-- **Product photo uploads** (currently URL paste; add S3/Cloudinary upload in `ProductForm`).
-- **Email notifications** (order placed/shipped) — e.g. Resend/SES; hook into `updateOrderStatus`.
-- **Razorpay webhook** endpoint as a safety net for missed `confirmPayment` calls
-  (route + `RAZORPAY_WEBHOOK_SECRET`).
+- **Rotate the Razorpay test keys** (leaked in the initial git push; old commit may be cached on GitHub).
+- Configure SMTP in production to activate order emails + password reset (any provider works).
 - Pagination on `/products` and admin tables (fine up to a few hundred products).
 - Invoice PDF generation; GST fields if the business becomes GST-registered.
-- Rate limiting on auth endpoints (add at Caddy level or middleware) before heavy public exposure.
+- Move rate limiting to Redis if the app ever runs more than one container replica.
+- Consider S3/Cloudinary for images if the catalogue grows beyond a single-VPS volume.
