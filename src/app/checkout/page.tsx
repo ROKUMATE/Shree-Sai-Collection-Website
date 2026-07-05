@@ -5,6 +5,7 @@ import { razorpayConfigured } from "@/lib/razorpay";
 import { formatINR, shippingFor } from "@/lib/utils";
 import { CheckoutForm } from "@/components/CheckoutForm";
 import { AddressForm } from "@/components/AddressForm";
+import { PriceSummary } from "@/components/PriceSummary";
 
 export const dynamic = "force-dynamic";
 
@@ -69,20 +70,11 @@ export default async function CheckoutPage() {
               </li>
             ))}
           </ul>
-          <dl className="hairline mt-5 space-y-2.5 pt-4 text-sm">
-            <div className="flex justify-between">
-              <dt className="text-ink-soft">Subtotal</dt>
-              <dd>{formatINR(subtotal)}</dd>
-            </div>
-            <div className="flex justify-between">
-              <dt className="text-ink-soft">Delivery</dt>
-              <dd>{shipping === 0 ? "Free" : formatINR(shipping)}</dd>
-            </div>
-            <div className="flex justify-between pt-2 text-base font-semibold">
-              <dt>Total</dt>
-              <dd>{formatINR(subtotal + shipping)}</dd>
-            </div>
-          </dl>
+          <PriceSummary
+            subtotal={subtotal}
+            shipping={shipping}
+            className="hairline mt-5 pt-4"
+          />
         </aside>
       </div>
     </div>

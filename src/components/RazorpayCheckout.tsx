@@ -4,6 +4,7 @@
 // The script is loaded lazily the first time a payment is started.
 
 import { confirmPayment } from "@/actions/checkout";
+import { BRAND_COLOR, RAZORPAY_CHECKOUT_SCRIPT, STORE_NAME } from "@/lib/constants";
 
 export type PaymentDetails = {
   rzpOrderId: string;
@@ -24,7 +25,7 @@ async function loadScript(): Promise<boolean> {
   if (window.Razorpay) return true;
   return new Promise((resolve) => {
     const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.src = RAZORPAY_CHECKOUT_SCRIPT;
     script.onload = () => resolve(true);
     script.onerror = () => resolve(false);
     document.body.appendChild(script);
@@ -37,8 +38,7 @@ async function loadScript(): Promise<boolean> {
  */
 export async function openRazorpay(
   orderId: string,
-  payment: PaymentDetails,
-  storeName = "Shringar"
+  payment: PaymentDetails
 ): Promise<boolean> {
   const loaded = await loadScript();
   if (!loaded || !window.Razorpay) return false;
@@ -48,7 +48,7 @@ export async function openRazorpay(
       key: payment.key,
       amount: payment.amount,
       currency: "INR",
-      name: storeName,
+      name: STORE_NAME,
       description: "Order payment",
       order_id: payment.rzpOrderId,
       prefill: {
@@ -56,7 +56,7 @@ export async function openRazorpay(
         email: payment.email,
         contact: payment.contact,
       },
-      theme: { color: "#6b1f2e" },
+      theme: { color: BRAND_COLOR },
       handler: async (response: {
         razorpay_payment_id: string;
         razorpay_order_id: string;

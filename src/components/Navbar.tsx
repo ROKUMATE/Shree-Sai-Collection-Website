@@ -2,34 +2,34 @@ import Link from "next/link";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { logout } from "@/actions/auth";
-
-const CATEGORY_LINKS = [
-  { label: "Sarees", href: "/products?category=sarees" },
-  { label: "Dress Material", href: "/products?category=dress-material" },
-  { label: "Jewellery", href: "/products?category=jewellery" },
-  { label: "Cosmetics", href: "/products?category=cosmetics" },
-  { label: "All Products", href: "/products" },
-];
+import { FREE_SHIPPING_ABOVE, STORE_NAME, STORE_TAGLINE } from "@/lib/constants";
+import { formatINR } from "@/lib/utils";
 
 export async function Navbar() {
   const session = await getSession();
-  const cartCount = session
-    ? await db.cartItem.count({ where: { userId: session.userId } })
-    : 0;
+  const [cartCount, categories] = await Promise.all([
+    session ? db.cartItem.count({ where: { userId: session.userId } }) : 0,
+    db.category.findMany({ orderBy: { name: "asc" } }),
+  ]);
+
+  const categoryLinks = [
+    ...categories.map((c) => ({ label: c.name, href: `/products?category=${c.slug}` })),
+    { label: "All Products", href: "/products" },
+  ];
 
   return (
     <header className="sticky top-0 z-40 bg-ivory-50/95 backdrop-blur">
       <div className="bg-burgundy px-4 py-1.5 text-center text-[11px] uppercase tracking-wider2 text-ivory-100">
-        Free shipping above ₹999 · Cash on delivery available
+        Free shipping above {formatINR(FREE_SHIPPING_ABOVE)} · Cash on delivery available
       </div>
 
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4">
         <Link href="/" className="shrink-0">
           <span className="font-serif text-2xl font-semibold tracking-tight">
-            Shringar
+            {STORE_NAME}
           </span>
           <span className="mt-0.5 hidden text-[10px] uppercase tracking-wider2 text-ink-faint sm:block">
-            Sarees · Suits · Jewellery · Beauty
+            {STORE_TAGLINE}
           </span>
         </Link>
 
@@ -91,7 +91,7 @@ export async function Navbar() {
 
       <nav className="hairline overflow-x-auto">
         <div className="mx-auto flex max-w-6xl gap-7 px-4">
-          {CATEGORY_LINKS.map((c) => (
+          {categoryLinks.map((c) => (
             <Link
               key={c.href}
               href={c.href}

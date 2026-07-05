@@ -7,7 +7,9 @@ import { db } from "@/lib/db";
 import { createSession, destroySession, requireSession } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import { clientKey, rateLimit, TOO_MANY } from "@/lib/rate-limit";
-import { appUrl, mailConfigured, sendPasswordResetEmail } from "@/lib/mail";
+import { mailConfigured, sendPasswordResetEmail } from "@/lib/mail";
+import { appUrl } from "@/lib/utils";
+import { PASSWORD_RESET_TTL_MS, RATE_LIMITS } from "@/lib/constants";
 
 export type AuthFormState = { error?: string; message?: string } | undefined;
 
@@ -23,7 +25,7 @@ export async function register(
   _prev: AuthFormState,
   formData: FormData
 ): Promise<AuthFormState> {
-  if (!rateLimit(await clientKey("register"), 5, 60 * 60 * 1000)) {
+  if (!rateLimit(await clientKey("register"), RATE_LIMITS.register.limit, RATE_LIMITS.register.windowMs)) {
     return { error: TOO_MANY };
   }
 
@@ -56,7 +58,7 @@ export async function login(
   _prev: AuthFormState,
   formData: FormData
 ): Promise<AuthFormState> {
-  if (!rateLimit(await clientKey("login"), 8, 10 * 60 * 1000)) {
+  if (!rateLimit(await clientKey("login"), RATE_LIMITS.login.limit, RATE_LIMITS.login.windowMs)) {
     return { error: TOO_MANY };
   }
 
@@ -115,7 +117,7 @@ export async function changePassword(
 
 // ---------- password reset ----------
 
-const RESET_TOKEN_TTL_MS = 60 * 60 * 1000; // 1 hour
+
 
 const hashToken = (token: string) =>
   crypto.createHash("sha256").update(token).digest("hex");
@@ -124,7 +126,7 @@ export async function requestPasswordReset(
   _prev: AuthFormState,
   formData: FormData
 ): Promise<AuthFormState> {
-  if (!rateLimit(await clientKey("forgot"), 3, 15 * 60 * 1000)) {
+  if (!rateLimit(await clientKey("forgot"), RATE_LIMITS.forgotPassword.limit, RATE_LIMITS.forgotPassword.windowMs)) {
     return { error: TOO_MANY };
   }
 
@@ -147,7 +149,7 @@ export async function requestPasswordReset(
         data: {
           userId: user.id,
           tokenHash: hashToken(token),
-          expiresAt: new Date(Date.now() + RESET_TOKEN_TTL_MS),
+          expiresAt: new Date(Date.now() + PASSWORD_RESET_TTL_MS),
         },
       }),
     ]);

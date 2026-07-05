@@ -3,15 +3,12 @@
 
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { STORE_NAME } from "../src/lib/constants";
+import categories from "./categories.json";
 
 const db = new PrismaClient();
 
-const categories = [
-  { name: "Sarees", slug: "sarees", tagline: "Handpicked weaves for every occasion" },
-  { name: "Dress Material", slug: "dress-material", tagline: "Unstitched suits & fabrics" },
-  { name: "Jewellery", slug: "jewellery", tagline: "Traditional pieces that hold their shine" },
-  { name: "Cosmetics", slug: "cosmetics", tagline: "Everyday beauty essentials" },
-];
+const ADMIN_EMAIL = `admin@${STORE_NAME.toLowerCase()}.local`;
 
 type SeedProduct = {
   name: string;
@@ -255,11 +252,11 @@ async function main() {
   // users
   const [admin] = await Promise.all([
     db.user.upsert({
-      where: { email: "admin@shringar.local" },
+      where: { email: ADMIN_EMAIL },
       update: {},
       create: {
         name: "Store Admin",
-        email: "admin@shringar.local",
+        email: ADMIN_EMAIL,
         password: await bcrypt.hash("admin123", 10),
         role: "ADMIN",
         phone: "9876543210",
@@ -306,7 +303,7 @@ async function main() {
   }
 
   console.log(`Seeded ${products.length} products, ${categories.length} categories.`);
-  console.log("Admin login:    admin@shringar.local / admin123");
+  console.log(`Admin login:    ${ADMIN_EMAIL} / admin123`);
   console.log("Customer login: priya@example.com / priya123");
   void admin;
 }

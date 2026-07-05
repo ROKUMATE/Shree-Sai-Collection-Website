@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { RAZORPAY_API_BASE } from "./constants";
 
 export function razorpayConfigured() {
   return Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET);
@@ -10,7 +11,7 @@ export async function createRazorpayOrder(amount: number, receipt: string) {
     `${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`
   ).toString("base64");
 
-  const res = await fetch("https://api.razorpay.com/v1/orders", {
+  const res = await fetch(`${RAZORPAY_API_BASE}/orders`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

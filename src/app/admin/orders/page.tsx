@@ -1,7 +1,7 @@
 import Link from "next/link";
-import type { OrderStatus, Prisma } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
-import { formatINR, formatDate, ORDER_STATUS_LABEL } from "@/lib/utils";
+import { formatINR, formatDate } from "@/lib/utils";
 import { StatusChip } from "@/components/StatusChip";
 
 export const dynamic = "force-dynamic";
@@ -79,10 +79,7 @@ export default async function AdminOrdersPage({
                   </span>
                 </td>
                 <td className="px-3 py-3">
-                  <StatusChip
-                    status={order.status as OrderStatus}
-                    label={ORDER_STATUS_LABEL[order.status]}
-                  />
+                  <StatusChip status={order.status} />
                 </td>
                 <td className="px-5 py-3 text-right font-medium tabular-nums">{formatINR(order.total)}</td>
               </tr>

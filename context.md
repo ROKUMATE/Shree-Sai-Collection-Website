@@ -105,13 +105,17 @@ scripts/bootstrap.mjs       # prod-start: categories + admin from env (idempoten
 src/
   middleware.ts             # route protection: /account /orders /checkout /cart /wishlist /admin(+role)
   lib/
+    constants.ts            # ⭐ SINGLE SOURCE OF TRUTH: store name/tagline, brand palette
+                            #   (Tailwind theme reads it too), shipping rules, page size,
+                            #   rate limits, order prefix, Razorpay endpoints.
+                            #   Rename the store / change a policy HERE only.
     db.ts                   # Prisma singleton
     auth.ts                 # JWT session create/read/destroy, requireSession/requireAdmin
     razorpay.ts             # order create (REST) + HMAC signature verify
     mail.ts                 # nodemailer wrapper (no-op without SMTP) + email templates
     rate-limit.ts           # in-memory sliding-window limiter (per-IP)
     uploads.ts              # upload dir, allowed types, safe-name rules
-    utils.ts                # formatINR, order numbers, status flow/labels, shipping rules
+    utils.ts                # formatINR, appUrl, order numbers, status labels, shippingFor
   actions/                  # ALL mutations are server actions ("use server")
     auth.ts                 # register/login/logout/profile/password + password reset
     cart.ts                 # cart CRUD, wishlist toggle, reviews
@@ -123,7 +127,11 @@ src/
     api/admin/upload        # POST multipart image (admin-only, 5MB, jpg/png/webp/avif/svg)
     api/uploads/[name]      # serves uploaded images (immutable cache, SVG-safe CSP)
     forgot-password, reset-password/[token]  # email-based password reset (needs SMTP)
-  components/               # Navbar, ProductCard, CheckoutForm, OrderTimeline, ProductForm, ...
+    sitemap.ts, robots.ts   # SEO: generated from DB + APP_URL; admin/api disallowed
+    error.tsx               # branded error boundary with retry
+  components/               # Navbar, ProductCard, CheckoutForm, OrderTimeline, ProductForm,
+                            # StatusChip, AddressLines, PriceSummary (shared blocks), ...
+prisma/categories.json      # category list shared by dev seed AND prod bootstrap
 ```
 
 ### Database models (Prisma)
@@ -178,14 +186,18 @@ accepts any image URL).
 
 ## Renaming the store
 
-Search-and-replace `Shringar` in: `src/app/layout.tsx` (metadata), `src/components/Navbar.tsx`,
-`src/components/Footer.tsx`, `src/components/RazorpayCheckout.tsx` (popup title),
-`prisma/seed.ts`, compose files (container names), and the `SR-` order-number prefix in
-`src/lib/utils.ts` if desired.
+Edit `src/lib/constants.ts` — `STORE_NAME`, `STORE_TAGLINE`, `STORE_DESCRIPTION`,
+`STORE_BLURB`, `ORDER_NUMBER_PREFIX`. Every page, email, the Razorpay popup, page
+titles and the seed pick it up automatically. Categories live in the admin panel /
+`prisma/categories.json`. The only cosmetic leftovers are Docker container names in
+the compose files.
 
-## Verification status (last run: 2026-07-04, after backend completion)
+## Verification status (last run: 2026-07-05, after constants refactor + pagination/SEO)
 
-- `npm run build` — clean, 24 routes.
+- `npm run build` — clean, 27 routes (incl. sitemap.xml, robots.txt).
+- Products pagination verified (12/page, filter changes reset to page 1).
+- Navbar/footer/home category links & tiles are DB-driven — admin-added categories
+  appear automatically; category tiles use each category's best product image.
 - Playwright E2E regression: register → add to cart → buy-now → save address → COD checkout →
   order timeline → admin login → dashboard → ship order with location/note → create product →
   customer sees SHIPPED + tracking event → customer blocked from `/admin`. **All 10 steps passed.**
@@ -200,7 +212,9 @@ Search-and-replace `Shringar` in: `src/app/layout.tsx` (metadata), `src/componen
 
 - **Rotate the Razorpay test keys** (leaked in the initial git push; old commit may be cached on GitHub).
 - Configure SMTP in production to activate order emails + password reset (any provider works).
-- Pagination on `/products` and admin tables (fine up to a few hundred products).
 - Invoice PDF generation; GST fields if the business becomes GST-registered.
+- Pagination on admin tables (storefront is done; admin is fine up to a few hundred rows).
+- Coupons / discount codes; delivery-partner API integration (Shiprocket/Delhivery) if
+  manual tracking updates become tedious.
 - Move rate limiting to Redis if the app ever runs more than one container replica.
 - Consider S3/Cloudinary for images if the catalogue grows beyond a single-VPS volume.

@@ -1,4 +1,9 @@
 import type { OrderStatus } from "@prisma/client";
+import {
+  FREE_SHIPPING_ABOVE,
+  ORDER_NUMBER_PREFIX,
+  SHIPPING_FEE,
+} from "./constants";
 
 const inr = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 });
 
@@ -23,14 +28,16 @@ export function newOrderNumber() {
   const d = new Date();
   const ymd = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
   const rand = Math.random().toString(36).slice(2, 7).toUpperCase();
-  return `SR-${ymd}-${rand}`;
+  return `${ORDER_NUMBER_PREFIX}-${ymd}-${rand}`;
 }
-
-export const FREE_SHIPPING_ABOVE = 999;
-export const SHIPPING_FEE = 79;
 
 export function shippingFor(subtotal: number) {
   return subtotal >= FREE_SHIPPING_ABOVE ? 0 : SHIPPING_FEE;
+}
+
+/** Public site URL (server-side only) — used in emails, sitemap and robots. */
+export function appUrl() {
+  return (process.env.APP_URL ?? "http://localhost:3000").replace(/\/$/, "");
 }
 
 export const ORDER_STATUS_FLOW: OrderStatus[] = [

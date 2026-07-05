@@ -89,7 +89,7 @@ export default async function AdminDashboard() {
                 <td className="px-3 py-3">{order.user.name}</td>
                 <td className="px-3 py-3 text-ink-faint">{formatDate(order.createdAt)}</td>
                 <td className="px-3 py-3">
-                  <StatusChip status={order.status} label={ORDER_STATUS_LABEL[order.status]} />
+                  <StatusChip status={order.status} />
                 </td>
                 <td className="px-5 py-3 text-right font-medium tabular-nums">
                   {formatINR(order.total)}

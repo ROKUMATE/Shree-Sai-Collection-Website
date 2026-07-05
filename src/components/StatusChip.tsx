@@ -1,4 +1,5 @@
 import type { OrderStatus } from "@prisma/client";
+import { ORDER_STATUS_LABEL } from "@/lib/utils";
 
 const STYLES: Record<OrderStatus, string> = {
   PLACED: "bg-ivory-200 text-ink-soft",
@@ -10,12 +11,12 @@ const STYLES: Record<OrderStatus, string> = {
   CANCELLED: "bg-red-50 text-red-800",
 };
 
-export function StatusChip({ status, label }: { status: OrderStatus; label: string }) {
+export function StatusChip({ status }: { status: OrderStatus }) {
   return (
     <span
       className={`inline-block px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider2 ${STYLES[status]}`}
     >
-      {label}
+      {ORDER_STATUS_LABEL[status]}
     </span>
   );
 }

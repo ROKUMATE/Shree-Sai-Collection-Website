@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { db } from "@/lib/db";
 import { requireSession } from "@/lib/auth";
-import { formatINR, shippingFor, FREE_SHIPPING_ABOVE } from "@/lib/utils";
+import { formatINR, shippingFor } from "@/lib/utils";
+import { FREE_SHIPPING_ABOVE } from "@/lib/constants";
 import { setCartQuantity, removeFromCart } from "@/actions/cart";
+import { PriceSummary } from "@/components/PriceSummary";
 
 export const dynamic = "force-dynamic";
 
@@ -96,26 +98,13 @@ export default async function CartPage() {
 
         {/* summary */}
         <aside className="card h-fit p-6">
-          <h2 className="font-serif text-xl font-medium">Order summary</h2>
-          <dl className="mt-5 space-y-3 text-sm">
-            <div className="flex justify-between">
-              <dt className="text-ink-soft">Subtotal</dt>
-              <dd>{formatINR(subtotal)}</dd>
-            </div>
-            <div className="flex justify-between">
-              <dt className="text-ink-soft">Delivery</dt>
-              <dd>{shipping === 0 ? <span className="text-green-700">Free</span> : formatINR(shipping)}</dd>
-            </div>
-            {shipping > 0 && (
-              <p className="text-xs text-ink-faint">
-                Add {formatINR(FREE_SHIPPING_ABOVE - subtotal)} more for free delivery.
-              </p>
-            )}
-            <div className="hairline flex justify-between pt-3 text-base font-semibold">
-              <dt>Total</dt>
-              <dd>{formatINR(subtotal + shipping)}</dd>
-            </div>
-          </dl>
+          <h2 className="mb-5 font-serif text-xl font-medium">Order summary</h2>
+          <PriceSummary subtotal={subtotal} shipping={shipping} />
+          {shipping > 0 && (
+            <p className="mt-2 text-xs text-ink-faint">
+              Add {formatINR(FREE_SHIPPING_ABOVE - subtotal)} more for free delivery.
+            </p>
+          )}
           <Link href="/checkout" className="btn-primary mt-6 w-full">
             Proceed to checkout
           </Link>

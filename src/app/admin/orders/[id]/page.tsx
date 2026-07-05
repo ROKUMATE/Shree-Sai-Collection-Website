@@ -4,6 +4,8 @@ import { db } from "@/lib/db";
 import { formatINR, formatDateTime, ORDER_STATUS_LABEL, ORDER_STATUS_FLOW } from "@/lib/utils";
 import { StatusChip } from "@/components/StatusChip";
 import { OrderTimeline } from "@/components/OrderTimeline";
+import { AddressLines } from "@/components/AddressLines";
+import { PriceSummary } from "@/components/PriceSummary";
 import { updateOrderStatus, markOrderPaid } from "@/actions/admin";
 
 export const dynamic = "force-dynamic";
@@ -44,7 +46,7 @@ export default async function AdminOrderDetailPage({
             {formatDateTime(order.createdAt)} · {order.user.name} ({order.user.email})
           </p>
         </div>
-        <StatusChip status={order.status} label={ORDER_STATUS_LABEL[order.status]} />
+        <StatusChip status={order.status} />
       </div>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_360px]">
@@ -67,22 +69,11 @@ export default async function AdminOrderDetailPage({
                 </li>
               ))}
             </ul>
-            <dl className="hairline mt-4 space-y-1.5 pt-3 text-sm">
-              <div className="flex justify-between">
-                <dt className="text-ink-soft">Subtotal</dt>
-                <dd className="tabular-nums">{formatINR(order.subtotal)}</dd>
-              </div>
-              <div className="flex justify-between">
-                <dt className="text-ink-soft">Delivery</dt>
-                <dd className="tabular-nums">
-                  {order.shippingFee === 0 ? "Free" : formatINR(order.shippingFee)}
-                </dd>
-              </div>
-              <div className="flex justify-between pt-1 font-semibold">
-                <dt>Total</dt>
-                <dd className="tabular-nums">{formatINR(order.total)}</dd>
-              </div>
-            </dl>
+            <PriceSummary
+              subtotal={order.subtotal}
+              shipping={order.shippingFee}
+              className="hairline mt-4 pt-3"
+            />
           </section>
 
           {/* tracking history */}
@@ -155,21 +146,8 @@ export default async function AdminOrderDetailPage({
 
           {/* customer */}
           <section className="card p-5">
-            <h2 className="font-serif text-lg font-medium">Ship to</h2>
-            <address className="mt-3 text-sm not-italic leading-relaxed text-ink-soft">
-              <span className="font-medium text-ink">{order.address.fullName}</span>
-              <br />
-              {order.address.line1}
-              {order.address.line2 && (
-                <>
-                  <br />
-                  {order.address.line2}
-                </>
-              )}
-              <br />
-              {order.address.city}, {order.address.state} — {order.address.pincode}
-              <br />☎ {order.address.phone}
-            </address>
+            <h2 className="mb-3 font-serif text-lg font-medium">Ship to</h2>
+            <AddressLines address={order.address} />
           </section>
         </div>
       </div>

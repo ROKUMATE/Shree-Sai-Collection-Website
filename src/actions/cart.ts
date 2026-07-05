@@ -1,18 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
-import { getSession } from "@/lib/auth";
-
-async function sessionOrLogin(next: string) {
-  const session = await getSession();
-  if (!session) redirect(`/login?next=${encodeURIComponent(next)}`);
-  return session;
-}
+import { requireSession } from "@/lib/auth";
 
 export async function addToCart(productId: string, quantity = 1) {
-  const session = await sessionOrLogin("/cart");
+  const session = await requireSession("/cart");
 
   const product = await db.product.findUnique({ where: { id: productId } });
   if (!product || !product.active || product.stock < 1) return;
@@ -27,7 +20,7 @@ export async function addToCart(productId: string, quantity = 1) {
 }
 
 export async function setCartQuantity(cartItemId: string, quantity: number) {
-  const session = await sessionOrLogin("/cart");
+  const session = await requireSession("/cart");
 
   if (quantity < 1) {
     await db.cartItem.deleteMany({ where: { id: cartItemId, userId: session.userId } });
@@ -46,13 +39,13 @@ export async function setCartQuantity(cartItemId: string, quantity: number) {
 }
 
 export async function removeFromCart(cartItemId: string) {
-  const session = await sessionOrLogin("/cart");
+  const session = await requireSession("/cart");
   await db.cartItem.deleteMany({ where: { id: cartItemId, userId: session.userId } });
   revalidatePath("/", "layout");
 }
 
 export async function toggleWishlist(productId: string, path: string) {
-  const session = await sessionOrLogin(path);
+  const session = await requireSession(path);
 
   const existing = await db.wishlistItem.findUnique({
     where: { userId_productId: { userId: session.userId, productId } },
@@ -67,7 +60,7 @@ export async function toggleWishlist(productId: string, path: string) {
 }
 
 export async function addReview(productId: string, slug: string, formData: FormData) {
-  const session = await sessionOrLogin(`/products/${slug}`);
+  const session = await requireSession(`/products/${slug}`);
 
   const rating = Math.min(5, Math.max(1, Number(formData.get("rating") ?? 5)));
   const comment = String(formData.get("comment") ?? "").trim();

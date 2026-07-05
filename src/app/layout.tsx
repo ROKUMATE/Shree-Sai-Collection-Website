@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { STORE_DESCRIPTION, STORE_NAME, STORE_TITLE } from "@/lib/constants";
 import "./globals.css";
 
 const serif = Fraunces({
@@ -18,11 +19,10 @@ const sans = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Shringar — Sarees, Suits, Jewellery & Beauty",
-    template: "%s · Shringar",
+    default: STORE_TITLE,
+    template: `%s · ${STORE_NAME}`,
   },
-  description:
-    "Family-run boutique for sarees, dress materials, jewellery and cosmetics at honest retail prices. Cash on delivery available across India.",
+  description: STORE_DESCRIPTION,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

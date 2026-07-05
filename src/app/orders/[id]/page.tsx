@@ -2,10 +2,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
 import { requireSession } from "@/lib/auth";
-import { formatINR, formatDate, ORDER_STATUS_LABEL } from "@/lib/utils";
+import { formatINR, formatDate } from "@/lib/utils";
 import { OrderTimeline } from "@/components/OrderTimeline";
 import { StatusChip } from "@/components/StatusChip";
 import { RetryPaymentButton } from "@/components/RetryPaymentButton";
+import { AddressLines } from "@/components/AddressLines";
+import { PriceSummary } from "@/components/PriceSummary";
 import { cancelOrder } from "@/actions/checkout";
 
 export const dynamic = "force-dynamic";
@@ -59,7 +61,7 @@ export default async function OrderDetailPage({
           <h1 className="mt-1 font-serif text-2xl font-medium">{order.orderNumber}</h1>
           <p className="mt-1 text-sm text-ink-faint">Placed on {formatDate(order.createdAt)}</p>
         </div>
-        <StatusChip status={order.status} label={ORDER_STATUS_LABEL[order.status]} />
+        <StatusChip status={order.status} />
       </div>
 
       {/* tracking */}
@@ -91,40 +93,18 @@ export default async function OrderDetailPage({
               </li>
             ))}
           </ul>
-          <dl className="hairline mt-5 space-y-2 pt-4 text-sm">
-            <div className="flex justify-between">
-              <dt className="text-ink-soft">Subtotal</dt>
-              <dd>{formatINR(order.subtotal)}</dd>
-            </div>
-            <div className="flex justify-between">
-              <dt className="text-ink-soft">Delivery</dt>
-              <dd>{order.shippingFee === 0 ? "Free" : formatINR(order.shippingFee)}</dd>
-            </div>
-            <div className="flex justify-between pt-1 text-base font-semibold">
-              <dt>Total</dt>
-              <dd>{formatINR(order.total)}</dd>
-            </div>
-          </dl>
+          <PriceSummary
+            subtotal={order.subtotal}
+            shipping={order.shippingFee}
+            className="hairline mt-5 pt-4"
+          />
         </section>
 
         {/* address + payment */}
         <div className="space-y-8">
           <section className="card p-6">
-            <h2 className="font-serif text-xl font-medium">Delivering to</h2>
-            <address className="mt-3 text-sm not-italic leading-relaxed text-ink-soft">
-              <span className="font-medium text-ink">{order.address.fullName}</span>
-              <br />
-              {order.address.line1}
-              {order.address.line2 && (
-                <>
-                  <br />
-                  {order.address.line2}
-                </>
-              )}
-              <br />
-              {order.address.city}, {order.address.state} — {order.address.pincode}
-              <br />☎ {order.address.phone}
-            </address>
+            <h2 className="mb-3 font-serif text-xl font-medium">Delivering to</h2>
+            <AddressLines address={order.address} />
           </section>
 
           <section className="card p-6">

@@ -49,7 +49,7 @@ export default async function OrdersPage() {
                 </p>
               </div>
               <div className="flex items-center gap-3">
-                <StatusChip status={order.status} label={ORDER_STATUS_LABEL[order.status]} />
+                <StatusChip status={order.status} />
                 <span className="font-semibold">{formatINR(order.total)}</span>
               </div>
             </div>

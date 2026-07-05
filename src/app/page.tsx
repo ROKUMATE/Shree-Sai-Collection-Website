@@ -4,13 +4,6 @@ import { ProductCard } from "@/components/ProductCard";
 
 export const dynamic = "force-dynamic";
 
-const CATEGORY_TILES = [
-  { slug: "sarees", image: "/products/kanjivaram-crimson.svg" },
-  { slug: "dress-material", image: "/products/chanderi-teal-suit.svg" },
-  { slug: "jewellery", image: "/products/kundan-bridal-necklace.svg" },
-  { slug: "cosmetics", image: "/products/velvet-matte-lipstick.svg" },
-];
-
 export default async function HomePage() {
   const [featured, latest, categories] = await Promise.all([
     db.product.findMany({
@@ -24,10 +17,24 @@ export default async function HomePage() {
       orderBy: { createdAt: "desc" },
       take: 4,
     }),
-    db.category.findMany(),
+    // each category tile shows its best product image (featured first, then oldest)
+    db.category.findMany({
+      orderBy: { name: "asc" },
+      include: {
+        products: {
+          where: { active: true },
+          orderBy: [{ featured: "desc" }, { createdAt: "asc" }],
+          take: 1,
+          select: { image: true },
+        },
+      },
+    }),
   ]);
 
-  const catBySlug = Object.fromEntries(categories.map((c) => [c.slug, c]));
+  // hero collage: two featured pieces from different categories for contrast
+  const heroPrimary = featured[0];
+  const heroSecondary =
+    featured.find((p) => p.categoryId !== heroPrimary?.categoryId) ?? featured[1];
 
   return (
     <div>
@@ -55,20 +62,22 @@ export default async function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="hidden grid-cols-2 gap-4 md:grid">
-            {/* eslint-disable @next/next/no-img-element */}
-            <img
-              src="/products/banarasi-royal-blue.svg"
-              alt="Banarasi saree"
-              className="mt-8 w-full border border-ink/10 object-cover"
-            />
-            <img
-              src="/products/kundan-bridal-necklace.svg"
-              alt="Kundan necklace set"
-              className="mb-8 w-full border border-ink/10 object-cover"
-            />
-            {/* eslint-enable @next/next/no-img-element */}
-          </div>
+          {heroPrimary && heroSecondary && (
+            <div className="hidden grid-cols-2 gap-4 md:grid">
+              {/* eslint-disable @next/next/no-img-element */}
+              <img
+                src={heroPrimary.image}
+                alt={heroPrimary.name}
+                className="mt-8 w-full border border-ink/10 object-cover"
+              />
+              <img
+                src={heroSecondary.image}
+                alt={heroSecondary.name}
+                className="mb-8 w-full border border-ink/10 object-cover"
+              />
+              {/* eslint-enable @next/next/no-img-element */}
+            </div>
+          )}
         </div>
       </section>
 
@@ -81,18 +90,17 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {CATEGORY_TILES.map((tile) => {
-            const cat = catBySlug[tile.slug];
-            if (!cat) return null;
-            return (
+          {categories
+            .filter((cat) => cat.products.length > 0)
+            .map((cat) => (
               <Link
-                key={tile.slug}
-                href={`/products?category=${tile.slug}`}
+                key={cat.id}
+                href={`/products?category=${cat.slug}`}
                 className="group relative block overflow-hidden border border-ink/10"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={tile.image}
+                  src={cat.products[0].image}
                   alt={cat.name}
                   className="aspect-3/4 w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                 />
@@ -103,8 +111,7 @@ export default async function HomePage() {
                   )}
                 </div>
               </Link>
-            );
-          })}
+            ))}
         </div>
       </section>
 

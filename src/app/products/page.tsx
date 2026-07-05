@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Prisma } from "@prisma/client";
 import { db } from "@/lib/db";
 import { ProductCard } from "@/components/ProductCard";
+import { PRODUCTS_PER_PAGE } from "@/lib/constants";
 
 export const dynamic = "force-dynamic";
 
@@ -10,6 +11,7 @@ type Search = {
   q?: string;
   sort?: string;
   max?: string;
+  page?: string;
 };
 
 const SORTS: { key: string; label: string; orderBy: Prisma.ProductOrderByWithRelationInput }[] = [
@@ -44,15 +46,26 @@ export default async function ProductsPage({
     ...(max ? { price: { lte: max } } : {}),
   };
 
+  const total = await db.product.count({ where });
+  const totalPages = Math.max(1, Math.ceil(total / PRODUCTS_PER_PAGE));
+  const page = Math.min(totalPages, Math.max(1, Number(params.page) || 1));
+
   const [products, categories] = await Promise.all([
-    db.product.findMany({ where, include: { category: true }, orderBy: sort.orderBy }),
+    db.product.findMany({
+      where,
+      include: { category: true },
+      orderBy: sort.orderBy,
+      skip: (page - 1) * PRODUCTS_PER_PAGE,
+      take: PRODUCTS_PER_PAGE,
+    }),
     db.category.findMany({ orderBy: { name: "asc" } }),
   ]);
 
   const activeCategory = categories.find((c) => c.slug === params.category);
 
+  // changing any filter resets to page 1; pagination links pass `page` explicitly
   const linkWith = (overrides: Partial<Search>) => {
-    const merged = { ...params, ...overrides };
+    const merged = { ...params, page: undefined, ...overrides };
     const qs = new URLSearchParams();
     for (const [k, v] of Object.entries(merged)) if (v) qs.set(k, String(v));
     const s = qs.toString();
@@ -127,7 +140,8 @@ export default async function ProductsPage({
         <div>
           <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm">
             <p className="text-ink-faint">
-              {products.length} {products.length === 1 ? "item" : "items"}
+              {total} {total === 1 ? "item" : "items"}
+              {totalPages > 1 && ` · page ${page} of ${totalPages}`}
             </p>
             <div className="flex gap-4">
               {SORTS.map((s) => (
@@ -157,11 +171,41 @@ export default async function ProductsPage({
               </Link>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-              {products.map((p) => (
-                <ProductCard key={p.id} product={p} />
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+                {products.map((p) => (
+                  <ProductCard key={p.id} product={p} />
+                ))}
+              </div>
+
+              {totalPages > 1 && (
+                <nav className="mt-10 flex items-center justify-center gap-2 text-sm">
+                  {page > 1 && (
+                    <Link href={linkWith({ page: String(page - 1) })} className="btn-outline px-4 py-2">
+                      ← Previous
+                    </Link>
+                  )}
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
+                    <Link
+                      key={n}
+                      href={linkWith({ page: String(n) })}
+                      className={
+                        n === page
+                          ? "flex h-9 w-9 items-center justify-center bg-burgundy font-medium text-ivory-50"
+                          : "flex h-9 w-9 items-center justify-center border border-ink/20 text-ink-soft hover:border-burgundy hover:text-burgundy"
+                      }
+                    >
+                      {n}
+                    </Link>
+                  ))}
+                  {page < totalPages && (
+                    <Link href={linkWith({ page: String(page + 1) })} className="btn-outline px-4 py-2">
+                      Next →
+                    </Link>
+                  )}
+                </nav>
+              )}
+            </>
           )}
         </div>
       </div>

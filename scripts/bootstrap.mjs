@@ -2,17 +2,16 @@
 // Creates the four base categories and an admin user from env vars if none exists.
 // Plain Node + generated Prisma client only — no dev dependencies needed.
 
+import { readFileSync } from "fs";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 const db = new PrismaClient();
 
-const CATEGORIES = [
-  { name: "Sarees", slug: "sarees", tagline: "Handpicked weaves for every occasion" },
-  { name: "Dress Material", slug: "dress-material", tagline: "Unstitched suits & fabrics" },
-  { name: "Jewellery", slug: "jewellery", tagline: "Traditional pieces that hold their shine" },
-  { name: "Cosmetics", slug: "cosmetics", tagline: "Everyday beauty essentials" },
-];
+// same category list the dev seed uses — single source of truth
+const CATEGORIES = JSON.parse(
+  readFileSync(new URL("../prisma/categories.json", import.meta.url), "utf8")
+);
 
 async function main() {
   for (const c of CATEGORIES) {
