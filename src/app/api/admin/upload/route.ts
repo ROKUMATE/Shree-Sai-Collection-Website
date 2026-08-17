@@ -3,7 +3,12 @@ import path from "path";
 import { mkdir, writeFile } from "fs/promises";
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { allowedExtension, MAX_UPLOAD_BYTES, UPLOAD_DIR } from "@/lib/uploads";
+import {
+  allowedExtension,
+  blobConfigured,
+  MAX_UPLOAD_BYTES,
+  UPLOAD_DIR,
+} from "@/lib/uploads";
 
 export const dynamic = "force-dynamic";
 
@@ -31,8 +36,22 @@ export async function POST(req: Request) {
   }
 
   const name = `${crypto.randomBytes(8).toString("hex")}${ext}`;
+  const body = Buffer.from(await file.arrayBuffer());
+
+  if (blobConfigured()) {
+    // `addRandomSuffix: false` keeps the server-generated name we already
+    // validated, so the stored URL stays predictable.
+    const { put } = await import("@vercel/blob");
+    const blob = await put(`products/${name}`, body, {
+      access: "public",
+      addRandomSuffix: false,
+      contentType: file.type || undefined,
+    });
+    return NextResponse.json({ url: blob.url });
+  }
+
   await mkdir(UPLOAD_DIR, { recursive: true });
-  await writeFile(path.join(UPLOAD_DIR, name), Buffer.from(await file.arrayBuffer()));
+  await writeFile(path.join(UPLOAD_DIR, name), body);
 
   return NextResponse.json({ url: `/api/uploads/${name}` });
 }

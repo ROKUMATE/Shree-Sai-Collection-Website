@@ -11,8 +11,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
-# Dummy DATABASE_URL so `prisma generate` and the build never touch a real DB
+# Dummy URLs so `prisma generate` and the build never touch a real DB
 ENV DATABASE_URL="postgresql://build:build@localhost:5432/build"
+ENV DIRECT_URL="postgresql://build:build@localhost:5432/build"
 RUN npx prisma generate && npm run build
 
 # ---------- runner: minimal production image ----------

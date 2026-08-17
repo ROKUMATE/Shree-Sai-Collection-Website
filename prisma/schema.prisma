@@ -4,7 +4,12 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  // Pooled connection used by the app at runtime (PgBouncer on Neon/Supabase).
   url      = env("DATABASE_URL")
+  // Unpooled connection used by `prisma migrate` — migrations take advisory
+  // locks, which a transaction-mode pooler drops. On a plain Postgres (Docker)
+  // set DIRECT_URL to the same value as DATABASE_URL.
+  directUrl = env("DIRECT_URL")
 }
 
 enum Role {

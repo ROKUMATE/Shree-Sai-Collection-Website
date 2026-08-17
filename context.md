@@ -55,6 +55,10 @@ Admin panel: **http://localhost:3000/admin**
 ### Environment (`.env`, not committed)
 
 - `DATABASE_URL` — Postgres connection string (dev compose: `postgresql://shringar:shringar_dev@localhost:5432/shringar`)
+- `DIRECT_URL` — unpooled connection used only by `prisma migrate`. On plain Postgres
+  (local + Docker) set it to the same value as `DATABASE_URL`; behind a pooler
+  (Neon/Supabase) use the non-`-pooler` host, because migrations take advisory locks
+  that a transaction-mode pooler drops.
 - `JWT_SECRET` — session signing secret (generate: `openssl rand -hex 32`)
 - `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` — from Razorpay dashboard.
   **Test keys are currently set in local `.env`.** If left empty, the site
@@ -68,6 +72,9 @@ Admin panel: **http://localhost:3000/admin**
   no-ops and the store runs fine without them. Password reset requires SMTP to be configured.
 - `UPLOAD_DIR` — where admin-uploaded photos are stored (default `./uploads`; a Docker
   volume in production).
+- `BLOB_READ_WRITE_TOKEN` — only on serverless hosts (Vercel), where the filesystem is
+  read-only. When present, admin photo uploads go to Vercel Blob instead of `UPLOAD_DIR`.
+  Injected automatically once a Blob store is connected to the project.
 - No `NEXT_PUBLIC_*` vars needed — the Razorpay key id reaches the browser via server action results.
 
 ## Deploying to production (VPS on AWS / GCP / DigitalOcean / anywhere)
@@ -94,6 +101,36 @@ in the admin form (any hosted image, or files dropped into `public/products/`).
 **DB backup:** `docker compose exec db pg_dump -U $POSTGRES_USER $POSTGRES_DB > backup.sql`
 **Health check:** `GET /api/health` (Docker healthcheck uses it too).
 Using a managed load balancer / PaaS instead? Delete the `caddy` service and publish app port 3000.
+
+## Deploying to Vercel (alternative to the VPS)
+
+The Docker stack above is still the primary target; Vercel is supported as a second
+deploy path. Env var reference: `.env.vercel.example`.
+
+Four things differ from the VPS deploy, and all four are handled in the repo:
+
+1. **No entrypoint.** Vercel only runs a build, so there is no `docker-entrypoint.sh`
+   to apply migrations. The `vercel-build` script in `package.json` does that job —
+   Vercel prefers it over `build` automatically:
+   `prisma generate && prisma migrate deploy && node scripts/bootstrap.mjs && next build`.
+   Without it the database stays empty and **every page 500s**.
+2. **Pooled vs direct DB.** Runtime uses the pooled Neon URL (`DATABASE_URL`), migrations
+   use the direct one (`DIRECT_URL`). Strip `channel_binding=require` from Neon's
+   copy-paste string — Prisma's engine rejects it.
+3. **Read-only filesystem.** `UPLOAD_DIR` cannot be written to. With a Blob store
+   connected, `/api/admin/upload` writes to Vercel Blob and returns an absolute URL;
+   without one, photo upload fails. The `/api/uploads/[name]` route stays for the
+   Docker path, so images uploaded on a VPS keep their relative URLs.
+4. **`output: "standalone"`** is disabled when `VERCEL` is set (`next.config.js`) —
+   Vercel builds its own serverless output.
+
+`vercel.json` pins functions to `sin1` (Singapore) to sit next to the Neon
+`ap-southeast-1` database; every page is `force-dynamic`, so each request hits the DB
+and cross-region latency would be felt on every page load.
+
+**Known limitation:** `src/lib/rate-limit.ts` is in-memory, so on Vercel each serverless
+instance keeps its own counters and the effective login/reset limit is looser than the
+configured one. Fine at current traffic; move to Redis if it matters.
 
 ## Architecture
 
